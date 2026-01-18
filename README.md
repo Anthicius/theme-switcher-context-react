@@ -1,16 +1,27 @@
-# React + Vite
+# React Theme Switcher (Safe Context Pattern)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight theme management system that demonstrates **Global State** handling using React Context and the **"Safe Custom Hook"** design pattern.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **Global State Management:** Efficient state sharing across the component tree without "prop drilling."
+* **Safe Custom Hook:** The `useTheme` hook includes a built-in guard clause to prevent silent failures (throws an informative error if used outside the Provider).
+* **Encapsulated Logic:** The toggle logic (`light` vs. `dark`) lives strictly inside the Context, keeping UI components "dumb" and clean.
+* **CSS Variables:** Uses native CSS custom properties for instant, performant color switching without complex inline styles.
+* **Dynamic Layout:** The application wrapper automatically updates its class based on the current context value.
 
-## React Compiler
+## Architectural Concepts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **The "Provider" Pattern:** A specialized component that holds the state and wraps the application.
+* **The "Guard Clause":** A safety check inside the hook (`if context === undefined`) that ensures the hook is always connected to a valid Provider.
+* **Derived UI:** Components like the Header consume the context solely to trigger actions, while the layout consumes it to apply visual styles.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* React (Context API, `useContext`, `useState`)
+* CSS (Variables & Transitions)
+* Vite
+
+<img width="1920" height="878" alt="image" src="https://github.com/user-attachments/assets/42ee495f-18a0-45c8-8f53-ad0bdb8c4865" />
+<img width="1920" height="878" alt="image" src="https://github.com/user-attachments/assets/58dca3f9-c559-47f4-b8d9-af27b7896f19" />
+
